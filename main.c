@@ -19,11 +19,11 @@ task main()
 	while(1)
 	{
 		// Apply the threshold
-		xLeftJoy = (abs(vexRT[Ch2]) <= threshold) ? 0 : vexRT[Ch4];
+		xLeftJoy = (abs(vexRT[Ch4]) <= threshold) ? 0 : vexRT[Ch4];
 		yLeftJoy = (abs(vexRT[Ch3]) <= threshold) ? 0 : vexRT[Ch3];
 
 		xRightJoy = (abs(vexRT[Ch1]) <= threshold) ? 0 : vexRT[Ch1];
-		yRightJoy = (abs(vexRT[Ch4]) <= threshold) ? 0 : vexRT[Ch2];
+		yRightJoy = (abs(vexRT[Ch2]) <= threshold) ? 0 : vexRT[Ch2];
 
         // The commented out code is from https://github.com/ColdMacaroni/robotcafe-attempt/blob/main/cafe.c
 
