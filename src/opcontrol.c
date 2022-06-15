@@ -1,3 +1,10 @@
+// Pins for the motors
+// TODO: Check if reversed positions are ok
+#define MOTOR_FL 1
+#define MOTOR_FR 2  // Reversed
+#define MOTOR_BL 3
+#define MOTOR_BR 4  // Reversed
+
 /** @file opcontrol.c
  * @brief File for operator control code
  *
@@ -8,6 +15,18 @@
  */
 
 #include "main.h"
+
+// Declarations
+/*
+ * Rotates the motors just enough to take a singular step.
+ */
+void step(void);
+
+// -- Constants
+const int threshold = 0;
+
+// 127 is full forward
+const int speed = 64;
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -27,8 +46,23 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
-	while (1) {
-		printf("Hello PROS User!\n");
-		delay(20);
-	}
+
+    int xLeftJoy;
+    int yLeftJoy;
+
+    int xRightJoy;
+    int yRightJoy;
+
+    /* joystickGetAnalog(unsigned char joystick, unsigned char axis); */
+    while (1) {
+        // Apply the threshold
+		// TODO: Check that these are the correct channels
+        xLeftJoy = (abs(joystickGetAnalog(1, 4)) <= threshold) ? 0 : joystickGetAnalog(1, 4);
+        yLeftJoy = (abs(joystickGetAnalog(1, 3)) <= threshold) ? 0 : joystickGetAnalog(1, 3);
+
+        xRightJoy = (abs(joystickGetAnalog(1, 1)) <= threshold) ? 0 : joystickGetAnalog(1, 1);
+        yRightJoy = (abs(joystickGetAnalog(1, 2)) <= threshold) ? 0 : joystickGetAnalog(1, 2);
+
+        delay(20);
+    }
 }
