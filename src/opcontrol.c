@@ -18,15 +18,16 @@
 
 // Declarations
 /*
- * Rotates the motors just enough to take a singular step.
+ * Rotates the motors just enough to take one step.
+ * It's a strict step because it stops all motor movement before and after.
  */
-void step(void);
+void strict_step(int speed);
 
 // -- Constants
-const int threshold = 0;
+const int THRESHOLD = 0;
 
 // 127 is full forward
-const int speed = 64;
+const int SPEED = 64;
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -56,13 +57,49 @@ void operatorControl() {
     /* joystickGetAnalog(unsigned char joystick, unsigned char axis); */
     while (1) {
         // Apply the threshold
-		// TODO: Check that these are the correct channels
-        xLeftJoy = (abs(joystickGetAnalog(1, 4)) <= threshold) ? 0 : joystickGetAnalog(1, 4);
-        yLeftJoy = (abs(joystickGetAnalog(1, 3)) <= threshold) ? 0 : joystickGetAnalog(1, 3);
+        // TODO: Check that these are the correct channels
+        xLeftJoy = (abs(joystickGetAnalog(1, 4)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 4);
+        yLeftJoy = (abs(joystickGetAnalog(1, 3)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 3);
 
-        xRightJoy = (abs(joystickGetAnalog(1, 1)) <= threshold) ? 0 : joystickGetAnalog(1, 1);
-        yRightJoy = (abs(joystickGetAnalog(1, 2)) <= threshold) ? 0 : joystickGetAnalog(1, 2);
+        xRightJoy = (abs(joystickGetAnalog(1, 1)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 1);
+        yRightJoy = (abs(joystickGetAnalog(1, 2)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 2);
+		
+		// For testing only. Should make the bot take a steo front and back
+		if (yRightJoy >= 64) {
+			strict_step(SPEED);
+		} else if (yRightJoy <= -64) {
+			strict_step(-SPEED);
+		}
+		
 
         delay(20);
     }
+}
+
+void strict_step(int speed) {
+	// Avoid any motor issues
+    motorStopAll();
+
+    // This way we can do steps FL,BR and then FR,BL and repeat. Rather than taking two steps.
+    // The side to which it refers to is which front leg is moving, the back leg will be at
+    // the opp. side.
+    enum Side { left, right };
+    static Side side = left;
+
+    // Motors on the right side should be reversed
+    if (side == left) {
+        motorSet(MOTOR_FL, speed);
+        motorSet(MOTOR_BR, -speed);
+        side = right;
+
+    } else if (side == right) {
+        motorSet(MOTOR_FR, -speed);
+        motorSet(MOTOR_BL, speed);
+        side = left;
+    }
+
+    // How long to complete the step, TODO: Find this value
+    delay(500);
+    
+    motorStopAll();
 }
