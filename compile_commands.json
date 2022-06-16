@@ -5,37 +5,12 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
-            "-isystem./include",
-            "-iquote./include/./",
-            "-mthumb",
-            "-mcpu=cortex-m3",
-            "-mlittle-endian",
-            "-Os",
-            "-ffunction-sections",
-            "-fsigned-char",
-            "-fomit-frame-pointer",
-            "-fsingle-precision-constant",
-            "-fdiagnostics-color",
-            "-std=gnu99",
-            "-o",
-            "bin/opcontrol.c.o",
-            "src/opcontrol.c"
-        ],
-        "directory": "/home/muffin/projects/programming/c/robot_c/dob",
-        "file": "src/opcontrol.c"
-    },
-    {
-        "arguments": [
-            "clang",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/include",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
             "-isystem./include",
             "-iquote./include/./",
             "-mthumb",
@@ -50,10 +25,10 @@
             "-std=gnu99",
             "-o",
             "bin/init.c.o",
-            "src/init.c"
+            "src\\init.c"
         ],
-        "directory": "/home/muffin/projects/programming/c/robot_c/dob",
-        "file": "src/init.c"
+        "directory": "C:\\Users\\eddie\\OneDrive\\Documents\\GitHub\\dobbog",
+        "file": "src\\init.c"
     },
     {
         "arguments": [
@@ -61,9 +36,12 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
-            "-isystem/home/muffin/.config/VSCodium/User/globalStorage/sigbots.pros/install/pros-toolchain-linux/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/include",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
             "-isystem./include",
             "-iquote./include/./",
             "-mthumb",
@@ -78,9 +56,40 @@
             "-std=gnu99",
             "-o",
             "bin/auto.c.o",
-            "src/auto.c"
+            "src\\auto.c"
         ],
-        "directory": "/home/muffin/projects/programming/c/robot_c/dob",
-        "file": "src/auto.c"
+        "directory": "C:\\Users\\eddie\\OneDrive\\Documents\\GitHub\\dobbog",
+        "file": "src\\auto.c"
+    },
+    {
+        "arguments": [
+            "clang",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/include",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+            "-isystemc:\\users\\eddie\\appdata\\roaming\\code\\user\\globalstorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
+            "-isystem./include",
+            "-iquote./include/./",
+            "-mthumb",
+            "-mcpu=cortex-m3",
+            "-mlittle-endian",
+            "-Os",
+            "-ffunction-sections",
+            "-fsigned-char",
+            "-fomit-frame-pointer",
+            "-fsingle-precision-constant",
+            "-fdiagnostics-color",
+            "-std=gnu99",
+            "-o",
+            "bin/opcontrol.c.o",
+            "src\\opcontrol.c"
+        ],
+        "directory": "C:\\Users\\eddie\\OneDrive\\Documents\\GitHub\\dobbog",
+        "file": "src\\opcontrol.c"
     }
 ]

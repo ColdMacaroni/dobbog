@@ -4,7 +4,12 @@
 #define MOTOR_FR 2  // Reversed
 #define MOTOR_BL 3
 #define MOTOR_BR 4  // Reversed
+#define US_IN 11
+#define US_OUT 12
 
+#define LED_G 1
+#define LED_Y 2
+#define LED_R 3
 /** @file opcontrol.c
  * @brief File for operator control code
  *
@@ -54,23 +59,57 @@ void operatorControl() {
     int xRightJoy;
     int yRightJoy;
 
+    int usDist = -1;
+    int ticksSinceValid = 0;
+    Ultrasonic us = ultrasonicInit(US_OUT, US_IN);
+
+    // set up pins for LEDs
+    pinMode(LED_G, OUTPUT);
+    pinMode(LED_Y, OUTPUT);
+    pinMode(LED_R, OUTPUT);
+
     /* joystickGetAnalog(unsigned char joystick, unsigned char axis); */
     while (1) {
         // Apply the threshold
-        // TODO: Check that these are the correct channels
+        usDist = ultrasonicGet(us);
         xLeftJoy = (abs(joystickGetAnalog(1, 4)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 4);
         yLeftJoy = (abs(joystickGetAnalog(1, 3)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 3);
 
         xRightJoy = (abs(joystickGetAnalog(1, 1)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 1);
         yRightJoy = (abs(joystickGetAnalog(1, 2)) <= THRESHOLD) ? 0 : joystickGetAnalog(1, 2);
-		
+
 		// For testing only. Should make the bot take a steo front and back
 		if (yRightJoy >= 64) {
 			strict_step(SPEED);
 		} else if (yRightJoy <= -64) {
 			strict_step(-SPEED);
 		}
-		
+        // printf("%d\n", usDist);
+
+        // leds
+        if(usDist == -1) {
+            ticksSinceValid ++;
+            printf("%d\n", ticksSinceValid);
+            if (ticksSinceValid > 10){
+                usDist = 101;
+                ticksSinceValid = 0;
+                digitalWrite(LED_G, false);
+                digitalWrite(LED_Y, true);
+                digitalWrite(LED_R, true);
+            }
+        }else if (usDist > 100) {
+            digitalWrite(LED_G, false);
+            digitalWrite(LED_Y, true);
+            digitalWrite(LED_R, true);
+        } else if (usDist > 60) {
+            digitalWrite(LED_G, true);
+            digitalWrite(LED_Y, false);
+            digitalWrite(LED_R, true);
+        } else {
+            digitalWrite(LED_G, true);
+            digitalWrite(LED_Y, true);
+            digitalWrite(LED_R, false);
+        }
 
         delay(20);
     }
@@ -84,7 +123,7 @@ void strict_step(int speed) {
     // The side to which it refers to is which front leg is moving, the back leg will be at
     // the opp. side.
     enum Side { left, right };
-    static Side side = left;
+    static enum Side side = left;
 
     // Motors on the right side should be reversed
     if (side == left) {
@@ -99,7 +138,7 @@ void strict_step(int speed) {
     }
 
     // How long to complete the step, TODO: Find this value
-    delay(500);
-    
+    delay(2000);
+
     motorStopAll();
 }
